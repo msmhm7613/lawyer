@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\LawyerInfo;
 use App\User;
 use Illuminate\Http\Request;
-use DB;
 
 class LawyerController extends Controller
 {
@@ -15,9 +13,9 @@ class LawyerController extends Controller
 
     public function getLawyer(){
 
-        $lawyers = DB::table('users')
-            ->join('lawyer_infos','users.id','=','lawyer_infos.user_id')
-            ->select('users.*','lawyer_infos.*' ,'lawyer_infos.id as info_id')
+        $lawyers = User::where('status',2)
+            ->where('role',2)
+            ->latest()
             ->get();
 
         if(count($lawyers))
