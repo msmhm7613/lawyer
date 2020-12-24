@@ -15,10 +15,7 @@ class LawyerController extends Controller
 
     public function getLawyer(){
 
-        $lawyers = DB::table('users')
-            ->join('lawyer_infos','users.id','=','lawyer_infos.user_id')
-            ->select('users.*','lawyer_infos.*' ,'lawyer_infos.id as info_id')
-            ->get();
+
 
         if(count($lawyers))
             return response()->json(['status' => 1,'result' => $lawyers]);
