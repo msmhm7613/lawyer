@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 27, 2020 at 05:47 PM
+-- Generation Time: Dec 27, 2020 at 07:10 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -128,14 +128,15 @@ CREATE TABLE IF NOT EXISTS `lawyer_infos` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `lawyer_infos`
 --
 
 INSERT INTO `lawyer_infos` (`id`, `user_id`, `speciality`, `bio`, `title`, `rate`, `comment_count`, `view_count`, `resume`, `educational`, `sex`, `lawyer_license`, `national_code`, `national_card`, `degree_education`, `address_info`, `area_expertise`, `created_at`, `updated_at`) VALUES
-(1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', NULL, NULL, 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', NULL, NULL, '2020-12-24 13:22:29', '2020-12-24 13:23:04');
+(1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', NULL, NULL, 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', NULL, NULL, '2020-12-24 13:22:29', '2020-12-24 13:23:04'),
+(2, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', NULL, NULL, 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', NULL, NULL, '2020-12-24 13:22:29', '2020-12-24 13:23:04');
 
 -- --------------------------------------------------------
 
@@ -332,7 +333,19 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `title`, `created_at`, `updated_at`) VALUES
+(1, '#خانواده', '2020-12-27 15:34:55', '2020-12-27 15:34:55'),
+(2, '#مدیر', '2020-12-27 15:35:13', '2020-12-27 15:35:13'),
+(3, '#مدیر_ساختمان', '2020-12-27 15:35:26', '2020-12-27 15:35:26'),
+(4, '#همسایه_آزاری', '2020-12-27 15:35:37', '2020-12-27 15:35:37'),
+(5, '#سرقت_ادبی', '2020-12-27 15:36:01', '2020-12-27 15:36:01'),
+(6, '#همسر', '2020-12-27 15:36:56', '2020-12-27 15:36:56');
 
 -- --------------------------------------------------------
 
@@ -351,7 +364,20 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `topics`
+--
+
+INSERT INTO `topics` (`id`, `top_id`, `title`, `slug`, `body`, `created_at`, `updated_at`) VALUES
+(1, '0', 'خانواده', 'خانواده', 'تمام موضوعات خانواده اینا', '2020-12-27 15:29:15', '2020-12-27 15:29:15'),
+(2, '0', 'کیفری', 'کیفری', 'موضوعات پیرامون کیفری اینا', '2020-12-27 15:29:52', '2020-12-27 15:29:52'),
+(3, '1', 'ملاقات فرزند', 'ملاقات_فرزند', 'فرزند اینا', '2020-12-27 15:30:56', '2020-12-27 15:30:56'),
+(4, '1', 'حضانت فرزند', 'حضانت_فرزند', 'حضانت اینا', '2020-12-27 15:31:23', '2020-12-27 15:31:23'),
+(5, '1', 'مهریه', 'مهریه', 'مهریه اینا', '2020-12-27 15:31:40', '2020-12-27 15:31:40'),
+(6, '2', 'سرقت', 'سرقت', 'سرقت اینا', '2020-12-27 15:32:14', '2020-12-27 15:32:14'),
+(7, '2', 'قتل', 'قتل', 'قتل ایناش', '2020-12-27 15:32:30', '2020-12-27 15:33:53');
 
 -- --------------------------------------------------------
 

@@ -31,6 +31,30 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/service_price/create','ServicePriceController@create');
     Route::get('/service_price/remove/{id}','ServiceController@remove');
+
+    // Topic Route
+    // Create Topic (top_id,title,slug,body)
+    Route::post('/topic/store','TopicController@store');
+    // Update Topic (id,top_id,title,slug,body)
+    Route::post('/topic/update','TopicController@edit');
+    // Destroy Topic (id)
+    Route::get('/topic/destroy','TopicController@destroy');
+
+    // Tags Route
+    // Create Tags (title)
+    Route::post('/tags/store','TagController@store');
+    // Update Tags (id,title)
+    Route::post('/tags/update','TagController@edit');
+    // Destroy Tags (id)
+    Route::get('/tags/destroy','TagController@destroy');
+
+    // Speciality Route
+    // Create Speciality (title)
+    Route::post('/speciality/store','SpecialityController@store');
+    // Update Speciality (id,title)
+    Route::post('/speciality/update','SpecialityController@edit');
+    // Destroy Speciality (id)
+    Route::get('/speciality/destroy','SpecialityController@destroy');
 });
 
 /* Lawyer Uri */
@@ -43,10 +67,17 @@ Route::group(['prefix' => 'lawyer'], function () {
 });
 
 /* User Uri */
+// @TODO Check User Role
 Route::get('/lawyers','LawyerController@getLawyer');
 Route::post('/question/store','QuestionController@store');
 Route::get('/question/get/{start?}','QuestionController@getQuestions');
 Route::get('/question/{id}','QuestionController@show');
 
-// service_price info
+// service_price info (role_id,type)type = 1 online 2 phone
 Route::get('/service_price/show/{role_id}/{type}','ServicePriceController@show');
+
+// Topic Uri
+Route::get('/topic/all','TopicController@topics');
+
+// Tags Uri
+Route::get('/tags/all','TagController@tags');
