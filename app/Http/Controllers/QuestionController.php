@@ -51,7 +51,7 @@ class QuestionController extends Controller
 
     public function getQuestions($start = 0){
         $start = $start * 10;
-        $que = Question::latest()->skip($start,10)->take(10)->get();
+        $que = Question::where('status',1)->latest()->skip($start,10)->take(10)->get();
         if(count($que))
             return response()->json(['status' => 1,'result' => $que]);
         else
@@ -64,7 +64,6 @@ class QuestionController extends Controller
 
         // پاسخ های داده شده به سوال
         $ans = Question::find($id)->answers;
-        // ->addSelect(['lawyer_name' => User::select('name')->whereColumn('lawyer_id', 'users.id')])
 
         if(count($ans)){
             foreach ($ans as $item){
