@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 27, 2020 at 07:10 PM
+-- Generation Time: Dec 28, 2020 at 06:06 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -109,34 +109,45 @@ DROP TABLE IF EXISTS `lawyer_infos`;
 CREATE TABLE IF NOT EXISTS `lawyer_infos` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `speciality` json DEFAULT NULL,
-  `bio` longtext COLLATE utf8mb4_unicode_ci,
-  `title` text COLLATE utf8mb4_unicode_ci,
-  `rate` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `comment_count` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `view_count` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resume` json DEFAULT NULL,
-  `educational` json DEFAULT NULL,
-  `sex` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '1 Male 2 Female',
-  `lawyer_license` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `national_code` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `national_card` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `degree_education` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address_info` json DEFAULT NULL,
-  `area_expertise` json DEFAULT NULL,
+  `speciality` json NOT NULL,
+  `bio` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rate` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment_count` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `view_count` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `phone_cons` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'مشاوره تلفنی',
+  `online_cons` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'مشاوره برخط',
+  `person_cons` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'مشاوره حضوری',
+  `q_and_a` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'پرسش و پاسخ',
+  `legal_evaluation` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'ارزیابی حقوقی',
+  `legal_calculation` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'محاسبه حقوقی',
+  `arranging_papers` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'تنظیم اوراق',
+  `writing_contract` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'تنظیم قرارداد',
+  `advocacy` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT 'قبول وکالت',
+  `resume` json NOT NULL,
+  `educational` json NOT NULL,
+  `sex` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '1 Male 2 Female',
+  `lawyer_license` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `national_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `national_card` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `degree_education` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address_info` json NOT NULL,
+  `area_expertise` json NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `lawyer_infos_user_id_foreign` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `lawyer_infos`
 --
 
-INSERT INTO `lawyer_infos` (`id`, `user_id`, `speciality`, `bio`, `title`, `rate`, `comment_count`, `view_count`, `resume`, `educational`, `sex`, `lawyer_license`, `national_code`, `national_card`, `degree_education`, `address_info`, `area_expertise`, `created_at`, `updated_at`) VALUES
-(1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', NULL, NULL, 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', NULL, NULL, '2020-12-24 13:22:29', '2020-12-24 13:23:04'),
-(2, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', NULL, NULL, 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', NULL, NULL, '2020-12-24 13:22:29', '2020-12-24 13:23:04');
+INSERT INTO `lawyer_infos` (`id`, `user_id`, `speciality`, `bio`, `title`, `rate`, `comment_count`, `view_count`, `phone_cons`, `online_cons`, `person_cons`, `q_and_a`, `legal_evaluation`, `legal_calculation`, `arranging_papers`, `writing_contract`, `advocacy`, `resume`, `educational`, `sex`, `lawyer_license`, `national_code`, `national_card`, `degree_education`, `address_info`, `area_expertise`, `created_at`, `updated_at`) VALUES
+(1, 2, '{\"key\": 2, \"val\": \"قرارداد ها\"}', 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.', 'تسیارهعسیارتهخسیعارهخعسیارهعسر', '5', '127', '14', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'null', 'null', '', 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', '', '', 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', 'null', 'null', '2020-12-24 13:22:29', '2020-12-28 13:11:11'),
+(2, 5, '{\"key\": 2, \"val\": \"قرارداد ها\"}', 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.', 'قلتثقه0تلخثهقتالخثهقل', '4', '20', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'null', 'null', '', 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', '', '', 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', 'null', 'null', '2020-12-24 13:22:29', '2020-12-28 13:11:11'),
+(3, 6, '{\"key\": 2, \"val\": \"قرارداد ها\"}', 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.', 'یج0لرهیس09بعی0سخب', '4.5', '15', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'null', 'null', '', 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', '', '', 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', 'null', 'null', '2020-12-24 13:22:29', '2020-12-28 13:11:11'),
+(4, 8, '{\"key\": 2, \"val\": \"قرارداد ها\"}', 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.', 'بختهحصثا87بغاصثبلغ8صثبصثبصثبصثب', '1', '14', '13', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'null', 'null', '', 'lawyer/confirmation/20_12_24_04_47_57_308.PNG', '', '', 'lawyer/confirmation/20_12_17_06_48_20_756.PNG', 'null', 'null', '2020-12-24 13:22:29', '2020-12-28 13:11:11');
 
 -- --------------------------------------------------------
 
@@ -150,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -160,7 +171,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2020_12_16_155658_create_lawyer_infos_table', 1),
+(16, '2020_12_16_155658_create_lawyer_infos_table', 6),
 (5, '2020_12_17_064937_create_confirmations_table', 2),
 (6, '2020_12_17_192628_create_questions_table', 3),
 (7, '2020_12_17_192749_create_answers_table', 3),
@@ -318,7 +329,18 @@ CREATE TABLE IF NOT EXISTS `specialities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `specialities`
+--
+
+INSERT INTO `specialities` (`id`, `title`, `created_at`, `updated_at`) VALUES
+(1, ' انحصار وراثت\r\n', NULL, NULL),
+(2, ' ملکی\r\n', NULL, NULL),
+(3, ' اسناد رسمی\r\n', NULL, NULL),
+(4, ' قراردادها\r\n', NULL, NULL),
+(5, ' وصول مطالبات\r\n', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -389,6 +411,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cellphone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city` char(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'مشخص نشده',
@@ -404,6 +427,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_cellphone_unique` (`cellphone`),
+  UNIQUE KEY `slug` (`slug`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `email` (`email`),
   KEY `email_2` (`email`),
@@ -414,107 +438,107 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `cellphone`, `city`, `region`, `email_verified_at`, `sms_verified_at`, `password`, `profile`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Bailey Hessel DVM', 'elton67@example.net', '318-330-3830 x263', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$BngrrLOy8kBIAYgYaFIIZOwGIeTGyVdwqL9i1N0/.z57fxXYfhRqK', 'default.png', '1', 1, 'HqIvMX99uo', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(2, 'Mr. Abdullah Lang III', 'luna79@example.org', '+1-223-895-7722', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$3IffaF4SqemQCoR4YPALzOnfR4pc2ivbNj5lJv5KEPHeg2qFxPEyq', 'default.png', '2', 2, 'pNTnTlv4fR', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(3, 'Arno Rutherford', 'johns.edna@example.com', '818-881-7834', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$KJyS75P7GLJ/oZINdslcGuIkBH/nsCC1pdVFsi6vgdJAgSPMD4jfm', 'default.png', '1', 1, 'S1LZsKCDOe', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(4, 'Kevon Stamm V', 'zgottlieb@example.org', '(827) 424-9717 x590', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$hvl1uysTJ4DE5SGOSahWouT7FH10Yrg52MqVCVs7V.vv5FrjRXAp6', 'default.png', '1', 2, '3YSPOajFnl', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(5, 'Jannie Oberbrunner', 'wmorissette@example.com', '+1-521-245-9789', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$assCPtvIPP76zQo8yU1kn.rvLv4gumMNJo9CipJ0ezVHsv3MAhvmO', 'default.png', '2', 2, '65rqMlR1Er', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(6, 'Rodrigo Fadel', 'mking@example.org', '(405) 699-5274', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$MHuJVIPZBXfqVvxdib7gOemjx7j5wJvMGyrf3VEvEI.h7t0CTQPZm', 'default.png', '2', 2, 'avhcRO3WPN', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(7, 'Elta Weimann', 'blaze63@example.org', '702-893-7256', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$qfWpZ7GbPzu/j5aAnDMNneEzThtGys7ucP/knrNDvMPBZICmEteUa', 'default.png', '1', 2, 'PxCDzKHLm6', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(8, 'Jeromy Sawayn V', 'april.barton@example.net', '(927) 497-4653 x538', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$oox1EBPBweeB985CU8QjO.fwRvPWKP7JeyQJ280Gd3Eb/NWDBUvS6', 'default.png', '2', 2, 'JTy3uDIExH', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(9, 'Jaiden Sawayn', 'ritchie.troy@example.com', '358.416.1858 x46379', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$hS4qbfNXymGKSB83QvayruJ6mH0dwSbJNyWuL062YNt7p/P2ucAaO', 'default.png', '2', 2, '6Gg0oSIo9p', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(10, 'Dean Spencer', 'jaime80@example.net', '(697) 439-6552', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$YpurC9rW1ueIdqXfTg/Oa.3qVPgCIFcpf5JsVqb1V2MYpTPf6oOwi', 'default.png', '2', 2, 'y6ApNln23r', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(11, 'Giles Abbott', 'else.harber@example.net', '+1 (690) 240-0084', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$dGW3txqTjGaCOAduRd2nGOFALKP0CJzOWCe7iIIRpHSgnRT.bpOPm', 'default.png', '1', 2, '07t3H27OqU', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(12, 'Isabelle Tremblay', 'frieda02@example.net', '(353) 708-6062 x00049', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$bLtSpBId4o3jBZv3xAPR9.mQJdrWQhD8Kofv8/OlTiNThmBk6oz36', 'default.png', '1', 2, '0YTyfoeXwC', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(13, 'Adeline Sipes', 'fhill@example.com', '(671) 824-7477 x2344', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$zfovgUapG.N7k9NyFY2dDepKyz4TFMnB9zyEHOYG7B.hgrQ0IlbOm', 'default.png', '2', 2, 'dN9AGJp33s', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(14, 'Antonina Kulas', 'rylee24@example.net', '292-804-4110 x548', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$TdXrSVBICdtMeczy9QroPuV0L1MXT6TSHOVg0JahLRpWV8QIQE21O', 'default.png', '1', 2, 'vBwBsoVcfP', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(15, 'Kaleigh Ward', 'krystal.oberbrunner@example.com', '1-392-754-4642 x09173', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$XlBG2ejCiyz.T13Ozwg0HOb8wxDDHXGjdROsyLZVFhQ91.ie9sCJK', 'default.png', '1', 2, 'iuntBk4OCx', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(16, 'Vena Ratke', 'ratke.mireya@example.org', '+1-668-630-0094', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$aNTB5Kd07YUhnvroh4tgfOpAGWFvp06WnvyWdErPN5X.1Euv2xx/K', 'default.png', '2', 2, 'Fq6BGdfoHd', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(17, 'Jeanne Schultz', 'mccullough.candelario@example.net', '(319) 953-6793 x85629', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$M8qC/ipEPTc2l6q8KQQ2fu3GvtuEPY6A8ExSItV9IAl4ba4414/mi', 'default.png', '1', 2, 'MKo1o8ggde', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(18, 'Pablo Roob', 'valentina.christiansen@example.net', '(951) 363-6975', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$G4OKkmvCPXq8jLTGiQIt.uWFYpfbLObrheWNWAvSibrthasWDRh3a', 'default.png', '1', 2, 'RAkQZaqU2s', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(19, 'Ms. Eda Kreiger', 'raphael.smith@example.net', '(597) 527-9883', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$JUxYthyy6fWR/eRy1jFRu.wsbf1k/QC27.Resdjb0rV0VcqLGqx6m', 'default.png', '1', 2, 'Ul2AjpaNC4', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(20, 'Guido McDermott', 'donnelly.kenyon@example.com', '250-785-1601', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$qNVNM7LLEfQdu4JKXsoaxekGBEfc9qXWbKJzqnIlrfc6YR.Z20ArW', 'default.png', '2', 2, '5Zrh54GXEp', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(21, 'Eleonore Keeling', 'ali83@example.net', '1-451-416-7858', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$zcMoYwrNEsh.E8.0KGaI4OPkFQVf82DsceTjWBoWc..TfsJIc..6y', 'default.png', '1', 2, 'vLnFFeGUrP', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(22, 'Mr. Filiberto Fisher', 'tommie84@example.net', '+1-667-250-4672', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$sDWcj7YVzUTkclJ/nAkYqu9jhAE.bMopqea8ku9tZFHZapEiM.xIe', 'default.png', '2', 2, 'WrJDqB99Kz', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(23, 'Mrs. Sydnie Beahan DDS', 'thad.spencer@example.net', '+16837568624', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$VGQxDvxT6p5e5uaJ3ZMjvOgiVQPUBJrAP6lMtg.ExTPCspdlNtxh2', 'default.png', '2', 2, '45QShHn6QA', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(24, 'Prof. Jordi Wilderman Jr.', 'qgrady@example.org', '721-947-6043', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$Z.kOiy4lWLmiSbZCcMQMgO8tomnQZ8Pt53Fqox7rEgqiFdKZTX.Qu', 'default.png', '2', 2, 'sGjOeu9xvn', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(25, 'Wendell Medhurst', 'wthompson@example.net', '(720) 441-3598', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$Y7hMbFuHdVPKJvDtE3W.P.g8cskmw2PlooXbbxYTaxX49DaomBp0a', 'default.png', '2', 2, 'RZyZQZdtSd', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(26, 'Roslyn Borer', 'daniella02@example.com', '+1 (248) 796-6422', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$nx0Pkciy2BrHdoNj16AmB.wiqwxowg2g2GLXHsichqssUkwSl.Uya', 'default.png', '1', 2, 'x8hJX5fZHV', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(27, 'Clarabelle Connelly', 'bashirian.monserrat@example.com', '454-904-5979', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$UcHYbHJ.2c87WCs9DZdDKOCJ15IfCdnj57opG733i.CWW13mQoC2q', 'default.png', '1', 2, 'mThdsFAeVv', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(28, 'Alexie Hudson', 'grimes.lavonne@example.net', '+1.796.837.5476', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$EnjBdLRnmTHUCZ8E52nrPut0W7jIAeGMmGImaPZIIj9qrGSYvMZCC', 'default.png', '2', 2, 'QYiP3utsmB', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(29, 'Prof. Wyatt Daniel II', 'carlee65@example.com', '950-807-7226 x4489', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$XYR07tIgxJbeuUQJAw0caOXR72.XdpRgrf/kilw2.YZ5qj3tuY.u2', 'default.png', '1', 2, 'ia3wW86FIX', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(30, 'Aaron Grimes', 'murphy.bettye@example.net', '773.767.6108 x043', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$wgdq4n3fmxmOBMy6/ldFF.CV5xfI3l5koBYGweu2Un/G7o7OrljES', 'default.png', '1', 2, 'xfYDkzZHgr', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(31, 'Jose Moen Sr.', 'rubye.funk@example.org', '+1-285-724-9994', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$06gzT58bQ9NsNhxGbwwmyOToOwOU2BlxXU/4AOWf4pbBF8aDdVKvO', 'default.png', '1', 2, 'vlvxj1lwxd', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(32, 'Annette Conn', 'dudley05@example.net', '1-869-382-2842 x721', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$StGKCMTJuJSgvOYusSXEd.SA7PVRcN/CKL05JjEmgsRbpyRdr.q4q', 'default.png', '1', 2, 'rry88P702m', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(33, 'Zack Bergnaum', 'arnulfo.kub@example.net', '1-997-312-9085', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$D3Wt37oRk4.47W1M0G/h2uc7VQXgQrOBd1sDjjBHx.J1oIVNttktS', 'default.png', '2', 2, 'S8pIEgXdv1', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(34, 'Prof. Leon Reynolds V', 'deon.lehner@example.com', '240-262-5846 x1625', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$zb8l9mQAoQcdfwDQlAKwfuw15OLW7ivIR70aIatXQ2GWIp4wOrj7e', 'default.png', '2', 2, 'j36nTwoM6V', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(35, 'Dean Beer', 'pkutch@example.org', '1-958-701-1312', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$S6xAlSlombmhIhCglZZIz.YwBWUnDRePwvRUUsH2Ww4ujiZy.SlnG', 'default.png', '1', 2, 'Ncn3ji5URE', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(36, 'Mazie Smitham MD', 'sim.cremin@example.com', '341.496.2723 x8083', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$jBRRHeZ98jwlYOT7hDbUc.1xxqdNsloGcIHHPwaQ463fjsQSsbapS', 'default.png', '1', 2, 'qER9ugF7Pc', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(37, 'Khalid Daniel', 'kacie.mertz@example.net', '+1-276-823-6786', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$rOGBzDLdgZdssLrZrCkmcen6Aa038VgBBuwGYCq0.AWi4/jOrVN4u', 'default.png', '1', 2, 'SbwHlsZ1hq', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(38, 'Mina Gottlieb', 'ldamore@example.com', '1-579-981-6006', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$/OCkZK8401WeWedj2SCtXuddHl.lS.NsmYrcd/T9NLI1RfKbzYGv6', 'default.png', '1', 2, '2CxSyhTHf4', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(39, 'Adonis Considine', 'brennan.connelly@example.com', '(345) 256-4674', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$O8XcYZC5nCW6p77eq9DdEOjdQ4raAMY4zc73Bo5GaOoeuB.71HwpK', 'default.png', '1', 2, '63jhGoEllE', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(40, 'Mr. Jarred Haag', 'kody78@example.org', '+14174313257', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$CcS1l43nQbocY6TmJw.UZuZ.8IbxDE2hu8vDE5.f0DAh7c76v7Rx.', 'default.png', '1', 2, 'Bk9taSpzGJ', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(41, 'Dr. Cathy Predovic IV', 'aurelie76@example.org', '+1-495-285-7192', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$cx.Qcj.7K8ruZFi7z0er8.4wdPt9SrgdCiND59ivuHVGGtho3YCF6', 'default.png', '2', 2, 'SHKuyZvnMZ', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(42, 'Wallace Crooks Jr.', 'rodrick.schaefer@example.net', '1-565-444-7169', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$BoQsXNnMBLFiD49EkVrRyu4Ih9k9UQRfW109NjmoJR0mUto/YwUIq', 'default.png', '1', 2, 'tsLWf9Ukg7', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(43, 'Fabiola Ratke', 'fcrona@example.org', '1-337-350-1716 x729', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$hlJPac2xjqG1ILhMJBYneu6PgcaGiFz3B5qScgNGHPwZ6n2dvK9cG', 'default.png', '2', 2, 'Ardek9XLZ8', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(44, 'Damian Schmeler Sr.', 'zulauf.osvaldo@example.com', '1-909-412-1302 x27389', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$YAYByPYLd.nG7A0tm53LAup60qb78/NwmIAqKyYizHPR8uAVcDs1u', 'default.png', '1', 2, 'xIshybK39g', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(45, 'Domenico Graham', 'murray.schneider@example.net', '540-698-3972 x85658', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$7TlEuPD/hNFsmMrr566BeeFRPOgM4jlqg.nEUotDNRdk00nb4p9Sm', 'default.png', '2', 2, 'ncRs0u2K7a', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(46, 'Liza Wilkinson', 'hilpert.berenice@example.net', '1-863-336-4907', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$gi5l5wb3a/A6CjcGMSn1ROJ/4Wpp76RCyEdcbObnF1p9trHcl4TrG', 'default.png', '2', 2, 'sPSTY7Ezgf', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(47, 'Willis Corkery PhD', 'wisozk.edison@example.org', '1-857-446-9757 x5470', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$.E4fjwx757cTR5d4wKrt9uA6E29lIqs4EAbSSwrDVwaGjNvR4WiJW', 'default.png', '1', 2, 'vvBqRhA3Na', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(48, 'Vena Kuhic', 'rutherford.keegan@example.com', '1-309-345-9778', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$qAqIk70tzSk0MBGk8kYyoOlXFuINTtP93iGGoXYFdlo4KqZcBxT2y', 'default.png', '2', 2, 'NOrMMzFK4d', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(49, 'Dr. Elna Bosco', 'blair12@example.org', '314-208-9456 x6739', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$4u9ROk41QqtafzUDXdjtW.wBy0QcGOMT8czg9VfiylvTDh/9Tacam', 'default.png', '1', 2, 'bzdUo38M2B', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(50, 'Leonel Keebler', 'rfunk@example.com', '1-435-916-8135', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$cE7HGa90he7U9fYJc5FpjeWD./ZhoxT5JXkImtMF6GpfGVlgK38Im', 'default.png', '2', 2, 'lFGuWu4fCW', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(51, 'Mr. Enid Kuhic', 'wnitzsche@example.net', '1-928-514-9716 x24376', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$AABsQ23NkRZO8WjR5cAcx.9PWNXP5NTCEdC2BrJSIfQMZevp3DO1m', 'default.png', '2', 2, 'yuCWfNrPup', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(52, 'Karl Wyman', 'sigurd86@example.org', '709-442-0607', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$Uk0JvhjnJOy1UrbK44ts/.A9A6FVrQ/LX7rSeZksXhG3l6XKkfTRq', 'default.png', '1', 2, 'eRvaQ7PbAQ', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(53, 'Jorge Dare III', 'wolf.kali@example.org', '+1-860-475-3219', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$YgJ9pvZr78.0Jb4hWZ2b.e/vcdRUOetNbYGBaXGT8mnB3FvlxdFWK', 'default.png', '1', 2, 'VISr13qrjm', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(54, 'Marie Marks', 'anissa04@example.net', '1-619-249-3036', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$.DCYZgCumbl7Wa2AlarOc.BlH.prbc9PG2xAPThKe5J.za/3ZSC7C', 'default.png', '1', 2, 'E2iZvYISQZ', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(55, 'Floyd Schumm', 'xstoltenberg@example.net', '+1 (819) 381-5083', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$2H96nEplbmlcXaCKAlxec.RSg1LDRxYETSWIqyDvHPlIenu5eOBXa', 'default.png', '1', 2, 'XlcH56r2Dd', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(56, 'Oliver Satterfield', 'reichert.donna@example.net', '247-873-8930', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$nvfYLtQb/ELfT2Legk/bY..Fu.HE0L6iXqInNTk27Aj2UWm6Jyk5y', 'default.png', '2', 2, '7Y3eIKkEiR', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(57, 'Prof. Santina White PhD', 'aaliyah.wyman@example.org', '330-739-4089', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$Ny.BSEZ4KCg2Q1zG0CCZ8eKalUjkwvKMHSpWWSlvnEyFIC6iqQmpm', 'default.png', '2', 2, 'ldzdQqE8fL', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(58, 'Mrs. Isabelle Heathcote', 'stracke.billy@example.com', '(656) 722-3608', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$97ZDkVqnp5LqcKeUlUb1IeHUGOVsmGq.mkQK2pwzI6NYcNfGnbswq', 'default.png', '1', 2, 'Du1oE1RClQ', '2020-12-20 07:12:10', '2020-12-20 07:12:10'),
-(59, 'Mr. Armando McClure MD', 'jesse.cartwright@example.org', '448-368-7722', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$0PZYNGyfkP9dtOVYNquMeuToBjLpqIhQLMMKsUnZJIBIRz6DJLzE6', 'default.png', '1', 2, 'XwasJhWigD', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(60, 'Vinnie Von', 'jaylin.tillman@example.org', '718.292.6198', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$AHZfbQwsGHglISjo5KmCiOHmWGR/EdLU75a4106vX/.VJaf3mknZS', 'default.png', '1', 2, 'WpiplaqD6D', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(61, 'Daisha Bednar', 'witting.elmore@example.net', '+1.714.727.8305', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$xtYLpvCruvY5QO.GQUYFneRNd6atJbC2.dV.fyT8RCMzIaQ3NCDg.', 'default.png', '2', 2, 'YYPFmmMekp', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(62, 'Mr. Hazel Fisher II', 'elsa.bins@example.org', '1-387-396-6962 x08560', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$4Qu32FYxS7zz5P/zlUnDfudmI3TGLMpG7nRtH/MAJ.LM3i42Yai.u', 'default.png', '2', 2, '0Sg2GilKvd', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(63, 'Lyda Schaden', 'chanel.bogisich@example.com', '1-993-810-9142 x994', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$uioznY2EhDiwaHBQU6LKQO.1x8hBatZDuJ0OGrKikHavMoeFl543K', 'default.png', '1', 2, 'koXN6HomAq', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(64, 'Florence Jenkins', 'ted.emard@example.net', '958.615.1653 x6612', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$5L20PX2Q4gDPYRF39499nuvblJpie0XGn6yKVWl9gO3x3HnsqveM2', 'default.png', '1', 2, 'lb5CEjqCDj', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(65, 'Millie Ondricka', 'selmer08@example.com', '1-963-293-5853 x8242', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$UVF6AKGAIKm4mksRhEk9ReXNBUOGsV70rkP97dPE2RpJy19VZkuq6', 'default.png', '1', 2, 'rcK3sbbuZ2', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(66, 'Major Roob Sr.', 'jschimmel@example.com', '1-839-215-3269', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$1wPXO5WcmE6dUFP3R9516.1LhtlOjjS7ldWvlNK8J85WTKgiGY5sa', 'default.png', '2', 2, 'GCiExjdW17', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(67, 'Dr. Piper Rath DVM', 'devan98@example.com', '696.774.5336', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$oHQf.eG3e9CZGUroZ9kTdOkr7iKRqjjRN3rOagc8eM2OSXWZINuda', 'default.png', '1', 2, 'iBeyfRYKSw', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(68, 'Elisa Schowalter', 'marquise.hagenes@example.com', '717.225.8494 x095', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$T/wg.MWswGu8OJne8XlIde7ovTFcmbm1LiQIQPjVLOFe8Su84HRVC', 'default.png', '2', 2, 'bjh6JhqVcr', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(69, 'Prof. Keshawn Jast Sr.', 'maybell93@example.com', '+1-615-663-8928', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$QAWQbp.Mbqyuc4ApRGfgauxkX2LDLQALyEJRF2oAAFi6J6LjoXyJm', 'default.png', '1', 2, 'oFrDj4nQ75', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(70, 'Warren Kihn Jr.', 'hwunsch@example.org', '+12029829981', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$F7Y9tnQQ3H.lGYCyEjBy8u7iEO0arQRv8/Ynr67A/C6FYWU8gVZKy', 'default.png', '2', 2, 'SfWYOQoi2N', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(71, 'Oleta McCullough', 'xwindler@example.com', '1-914-769-0294', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$DJtbxVXXnrSXmncaN4XYD.TenwGCcea/njethc7f7CjhDLhWb1ScC', 'default.png', '1', 2, 'PwnUWFftjf', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(72, 'Mohamed Prohaska', 'hirthe.miller@example.org', '963-256-4260 x110', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$UPx79xvn8vCQDpeOvXizROx6OSCDWbx.4xTHuCLv1qfpMn85vaCxS', 'default.png', '2', 2, 'h7iX89i6f9', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(73, 'Donato Swift', 'carroll.frank@example.net', '(505) 270-6569', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$VKVIldb//u65LJi7JSEXHeQcQ.Me6jNZYCSb25IENY6931urMi0sO', 'default.png', '1', 2, '9tMqTcTpjF', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(74, 'Prof. Emiliano Bednar', 'lou.langworth@example.com', '810-946-0032', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$0j31nOSDS6E0LfqCEmswB.LIwfTd55z.l4MBoxoc0oQQS1iz2nkhO', 'default.png', '2', 2, 'IXdi16hBED', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(75, 'Mrs. Josephine Bartoletti MD', 'kutch.jalon@example.org', '(919) 675-3950', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$DGObE0RQf1iaj8n98KRPr.LIejNlKPT29xOdNu/fhxXKKia5WA4mu', 'default.png', '1', 2, 'AwTZocgDhS', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(76, 'Eric Tromp', 'noemy.barrows@example.net', '274.790.6865 x293', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$tuN5VKUSyZTZ25xngGDgz.8PB7qFL2TDaJAzWT22Vl3xXklnXTHTy', 'default.png', '2', 2, 'uz2sGy0W8Q', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(77, 'Shayna Kerluke', 'roxanne.jenkins@example.com', '+1-985-241-6065', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$mp6j3EP1H1XEuENI.7FubOaTMTP1uuaiKuWvHoPztPcGqva5FFDHe', 'default.png', '2', 2, 'r439ASNmWB', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(78, 'Bart Cormier', 'marks.brooks@example.org', '464.492.6635 x0905', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$3AkMMGc50bIpSz7T5lhV0uoJUj8MIVKhP7lnAdMIr4N/vJA8Y0EL6', 'default.png', '1', 2, '58TGYLWXaS', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(79, 'Tyshawn McGlynn', 'kris.lloyd@example.org', '464.981.9599 x817', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$oJPmGX7ISawo3E9gywyKNOno9kbHZXOp.qALXrgbxFQ3BB6reiZwW', 'default.png', '1', 2, '6UBlyIJ0HE', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(80, 'Gladyce Kiehn', 'jared.crooks@example.org', '(373) 577-9164', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$JPQFMuM/WkHp2t/Or1U2eOTYDr0n/3bkAwxzy6Y17tnQTumSZF.3y', 'default.png', '2', 2, 'x2VPHzhCYp', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(81, 'Era Jenkins', 'kattie89@example.com', '+1-895-269-1112', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$VqL5SCwwnowzNT.1VPHEDeBUDtNscMpMm7M3g7w0RpCiR0D72QREK', 'default.png', '1', 2, 'ZlDpoNEbRm', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(82, 'Westley Heathcote', 'ferry.jacquelyn@example.org', '(326) 848-6898 x07957', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$wOJIIg7MQs/SA53FwS0UOetHqpP.RAy1jP6qZ2qlyl2Q.8PSKCl0q', 'default.png', '1', 2, '9ID33FaEUN', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(83, 'Matt Huels', 'jenkins.tiffany@example.org', '+1 (952) 223-4913', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$AApugRECU9LqS7DFcfMgEOKqcQZBL63YD82cEkKe9UtAlqi47SN0i', 'default.png', '1', 2, 'Q6MsvJFNO1', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(84, 'Krystal Wolff Jr.', 'obergstrom@example.org', '494.538.0978', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$jAcICQU24VkC5jEK5Iqwn.Uzlk5hPPtwnQF/Q8VK5FIBurRs1FX5q', 'default.png', '2', 2, '8LirwySJoL', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(85, 'Alba Bode IV', 'xmorar@example.com', '908-354-6699', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$McOyuxXSPp2n7VVpQsCOkeq5vadkjc1667x6wHYBhRG2Xayid9N22', 'default.png', '1', 2, 'waFoLLaAaU', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(86, 'Ayana Beahan', 'wweimann@example.org', '(932) 458-5127', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$SHjYNLRTLVlyIPos637beet2/xIyymXDMHCATvdIoLpmzfjRk3d9G', 'default.png', '2', 2, 'UeZE5wiOLU', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(87, 'Esta Marquardt Jr.', 'kendrick48@example.org', '1-749-790-2571', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$xHQTCXOhFVABNTCOgcTu2u6ER7rwKN1o.IwIVpvmaVFD1SjEdf8.W', 'default.png', '2', 2, 'GBqUgHXNVt', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(88, 'Marcelino Cruickshank MD', 'sauer.luna@example.com', '1-285-200-1777 x21705', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$hrpDhskbmha2Nki0CIKKgexjq7hR9TLzo0ObC9whaRwRefZxu7TJi', 'default.png', '1', 2, 'PdGk7Er4Rx', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(89, 'Maxime Langosh', 'rterry@example.org', '+15186408667', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$rydkJCeiX4mODwNmn453he6mMrZAi1B41blT25VnD4Bze1V8B7dly', 'default.png', '1', 2, 'oT5LlpTQ1c', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(90, 'Prof. Krystel Stokes PhD', 'ucorkery@example.com', '1-206-881-5834', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$gDltgrJOXGrietVXWzCfCe0MpdaEkyvk1N9yfef2H6eREOyp43Gl6', 'default.png', '1', 2, 'qi1zAFV4UM', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(91, 'Nicola Morar MD', 'considine.quinten@example.org', '1-218-682-1187 x7390', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$nWZeIZU1Jf3PSXuEc33ttOGTxXl8dp0SYx2aZTWHCL6X0cX7PV1Ei', 'default.png', '1', 2, 'tZpNvqQfs6', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(92, 'Daphney Carroll', 'watsica.braden@example.org', '(670) 656-2719 x9305', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$8J9gFTQnMc8a7B1pmtlRouFQ6Yxy4wMuXkOO/G1Ww7pI.qTiG6XUm', 'default.png', '2', 2, 'KUo1ptSbUS', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(93, 'Cornelius Leannon', 'gabernathy@example.com', '(693) 598-2572 x6811', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$8EHxVqNQ5ztQ9ooDBzgHfej8KP3LH2TsG9p0kvoasjyi.LFdBf9Sy', 'default.png', '2', 2, 'LSbGSva5uO', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(94, 'Dr. Virginie Armstrong', 'wilkinson.sabina@example.com', '961.641.2171 x784', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$TcfZrrD9yk08YwP69j1ajOCx/Z6p7U.YxJJGrYqJMxfjQqrgPTZOC', 'default.png', '2', 2, 'SgWoOuXXs0', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(95, 'Rubye Wunsch', 'clakin@example.com', '312.337.8572', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$0NKbxq2cBozhsME4vo/Aqu.917V78sUcwdE20AJXoLo5f0RDPFksG', 'default.png', '2', 2, 'WFnDkGvdKP', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(96, 'Forrest Conroy', 'maynard.ebert@example.org', '451.898.2911', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$at.M51Ri1YN7C6L2yLAeF.I9T1LCs3SlK7kQg0OxqiIHralaiP4iK', 'default.png', '2', 2, 'zdZO01o6H3', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(97, 'Edna Greenfelder', 'supton@example.org', '(634) 808-9892 x46207', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$RFSFibAYDhsv3VlNHXAXhufuQNCdjvUpNJLUYkJjz.U9S2jbSjmcS', 'default.png', '1', 2, 'P0JgAUrBPi', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(98, 'Aylin Huel', 'efahey@example.net', '843-917-2405', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$s/SlF2VqrvT2DjQ5EVEfCOJe/Rxtnn0QTfgP1QxsLhEcZDwXjRv.O', 'default.png', '2', 2, '5BgOwHdxif', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(99, 'Velma Klein', 'karley95@example.org', '816-321-9454 x498', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$.Dc6kw7W4XWf..bhFS6GT.7JzZ3G0YJnLdN5l8kQXEIuFRKI.RQQy', 'default.png', '2', 2, 'lIDlmnn7NW', '2020-12-20 07:12:11', '2020-12-20 07:12:11'),
-(100, 'Prof. Frederik Marquardt', 'cremin.otho@example.net', '(365) 753-0409 x1742', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$VIZ5HWnQZMVcX1yw6SfQhOpu8yh7YqrhTnXD9xeM4SypQ4yJjIMAa', 'default.png', '1', 2, 'LjChAFyYBe', '2020-12-20 07:12:11', '2020-12-20 07:12:11');
+INSERT INTO `users` (`id`, `name`, `slug`, `email`, `cellphone`, `city`, `region`, `email_verified_at`, `sms_verified_at`, `password`, `profile`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Bailey Hessel DVM', 'bailey-hessel-dvm', 'elton67@example.net', '318-330-3830 x263', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$BngrrLOy8kBIAYgYaFIIZOwGIeTGyVdwqL9i1N0/.z57fxXYfhRqK', 'default.png', '1', 1, 'HqIvMX99uo', '2020-12-20 07:12:10', '2020-12-28 12:02:39'),
+(2, 'Mr. Abdullah Lang III', 'mr-abdullah-lang-iii', 'luna79@example.org', '+1-223-895-7722', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$3IffaF4SqemQCoR4YPALzOnfR4pc2ivbNj5lJv5KEPHeg2qFxPEyq', 'default.png', '2', 2, 'pNTnTlv4fR', '2020-12-20 07:12:10', '2020-12-28 12:02:39'),
+(3, 'Arno Rutherford', 'arno-rutherford', 'johns.edna@example.com', '818-881-7834', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$KJyS75P7GLJ/oZINdslcGuIkBH/nsCC1pdVFsi6vgdJAgSPMD4jfm', 'default.png', '1', 1, 'S1LZsKCDOe', '2020-12-20 07:12:10', '2020-12-28 12:02:39'),
+(4, 'Kevon Stamm V', 'kevon-stamm-v', 'zgottlieb@example.org', '(827) 424-9717 x590', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$hvl1uysTJ4DE5SGOSahWouT7FH10Yrg52MqVCVs7V.vv5FrjRXAp6', 'default.png', '1', 2, '3YSPOajFnl', '2020-12-20 07:12:10', '2020-12-28 12:02:39'),
+(5, 'Jannie Oberbrunner', 'jannie-oberbrunner', 'wmorissette@example.com', '+1-521-245-9789', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$assCPtvIPP76zQo8yU1kn.rvLv4gumMNJo9CipJ0ezVHsv3MAhvmO', 'default.png', '2', 2, '65rqMlR1Er', '2020-12-20 07:12:10', '2020-12-28 12:02:39'),
+(6, 'Rodrigo Fadel', 'rodrigo-fadel', 'mking@example.org', '(405) 699-5274', 'یزد', 'یزد', '2020-12-20 07:12:00', NULL, '$2y$10$MHuJVIPZBXfqVvxdib7gOemjx7j5wJvMGyrf3VEvEI.h7t0CTQPZm', 'default.png', '2', 2, 'avhcRO3WPN', '2020-12-20 07:12:10', '2020-12-28 12:02:39'),
+(7, 'Elta Weimann', 'elta-weimann', 'blaze63@example.org', '702-893-7256', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$qfWpZ7GbPzu/j5aAnDMNneEzThtGys7ucP/knrNDvMPBZICmEteUa', 'default.png', '1', 2, 'PxCDzKHLm6', '2020-12-20 07:12:10', '2020-12-28 12:02:39'),
+(8, 'Jeromy Sawayn V', 'jeromy-sawayn-v', 'april.barton@example.net', '(927) 497-4653 x538', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$oox1EBPBweeB985CU8QjO.fwRvPWKP7JeyQJ280Gd3Eb/NWDBUvS6', 'default.png', '2', 2, 'JTy3uDIExH', '2020-12-20 07:12:10', '2020-12-28 12:02:39'),
+(9, 'Jaiden Sawayn', 'jaiden-sawayn', 'ritchie.troy@example.com', '358.416.1858 x46379', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$hS4qbfNXymGKSB83QvayruJ6mH0dwSbJNyWuL062YNt7p/P2ucAaO', 'default.png', '2', 2, '6Gg0oSIo9p', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(10, 'Dean Spencer', 'dean-spencer', 'jaime80@example.net', '(697) 439-6552', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$YpurC9rW1ueIdqXfTg/Oa.3qVPgCIFcpf5JsVqb1V2MYpTPf6oOwi', 'default.png', '2', 2, 'y6ApNln23r', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(11, 'Giles Abbott', 'giles-abbott', 'else.harber@example.net', '+1 (690) 240-0084', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$dGW3txqTjGaCOAduRd2nGOFALKP0CJzOWCe7iIIRpHSgnRT.bpOPm', 'default.png', '1', 2, '07t3H27OqU', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(12, 'Isabelle Tremblay', 'isabelle-tremblay', 'frieda02@example.net', '(353) 708-6062 x00049', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$bLtSpBId4o3jBZv3xAPR9.mQJdrWQhD8Kofv8/OlTiNThmBk6oz36', 'default.png', '1', 2, '0YTyfoeXwC', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(13, 'Adeline Sipes', 'adeline-sipes', 'fhill@example.com', '(671) 824-7477 x2344', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$zfovgUapG.N7k9NyFY2dDepKyz4TFMnB9zyEHOYG7B.hgrQ0IlbOm', 'default.png', '2', 2, 'dN9AGJp33s', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(14, 'Antonina Kulas', 'antonina-kulas', 'rylee24@example.net', '292-804-4110 x548', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$TdXrSVBICdtMeczy9QroPuV0L1MXT6TSHOVg0JahLRpWV8QIQE21O', 'default.png', '1', 2, 'vBwBsoVcfP', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(15, 'Kaleigh Ward', 'kaleigh-ward', 'krystal.oberbrunner@example.com', '1-392-754-4642 x09173', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$XlBG2ejCiyz.T13Ozwg0HOb8wxDDHXGjdROsyLZVFhQ91.ie9sCJK', 'default.png', '1', 2, 'iuntBk4OCx', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(16, 'Vena Ratke', 'vena-ratke', 'ratke.mireya@example.org', '+1-668-630-0094', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$aNTB5Kd07YUhnvroh4tgfOpAGWFvp06WnvyWdErPN5X.1Euv2xx/K', 'default.png', '2', 2, 'Fq6BGdfoHd', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(17, 'Jeanne Schultz', 'jeanne-schultz', 'mccullough.candelario@example.net', '(319) 953-6793 x85629', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$M8qC/ipEPTc2l6q8KQQ2fu3GvtuEPY6A8ExSItV9IAl4ba4414/mi', 'default.png', '1', 2, 'MKo1o8ggde', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(18, 'Pablo Roob', 'pablo-roob', 'valentina.christiansen@example.net', '(951) 363-6975', 'یزد', 'یزد', '2020-12-20 07:12:01', NULL, '$2y$10$G4OKkmvCPXq8jLTGiQIt.uWFYpfbLObrheWNWAvSibrthasWDRh3a', 'default.png', '1', 2, 'RAkQZaqU2s', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(19, 'Ms. Eda Kreiger', 'ms-eda-kreiger', 'raphael.smith@example.net', '(597) 527-9883', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$JUxYthyy6fWR/eRy1jFRu.wsbf1k/QC27.Resdjb0rV0VcqLGqx6m', 'default.png', '1', 2, 'Ul2AjpaNC4', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(20, 'Guido McDermott', 'guido-mcdermott', 'donnelly.kenyon@example.com', '250-785-1601', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$qNVNM7LLEfQdu4JKXsoaxekGBEfc9qXWbKJzqnIlrfc6YR.Z20ArW', 'default.png', '2', 2, '5Zrh54GXEp', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(21, 'Eleonore Keeling', 'eleonore-keeling', 'ali83@example.net', '1-451-416-7858', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$zcMoYwrNEsh.E8.0KGaI4OPkFQVf82DsceTjWBoWc..TfsJIc..6y', 'default.png', '1', 2, 'vLnFFeGUrP', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(22, 'Mr. Filiberto Fisher', 'mr-filiberto-fisher', 'tommie84@example.net', '+1-667-250-4672', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$sDWcj7YVzUTkclJ/nAkYqu9jhAE.bMopqea8ku9tZFHZapEiM.xIe', 'default.png', '2', 2, 'WrJDqB99Kz', '2020-12-20 07:12:10', '2020-12-28 12:02:40'),
+(23, 'Mrs. Sydnie Beahan DDS', 'mrs-sydnie-beahan-dds', 'thad.spencer@example.net', '+16837568624', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$VGQxDvxT6p5e5uaJ3ZMjvOgiVQPUBJrAP6lMtg.ExTPCspdlNtxh2', 'default.png', '2', 2, '45QShHn6QA', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(24, 'Prof. Jordi Wilderman Jr.', 'prof-jordi-wilderman-jr', 'qgrady@example.org', '721-947-6043', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$Z.kOiy4lWLmiSbZCcMQMgO8tomnQZ8Pt53Fqox7rEgqiFdKZTX.Qu', 'default.png', '2', 2, 'sGjOeu9xvn', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(25, 'Wendell Medhurst', 'wendell-medhurst', 'wthompson@example.net', '(720) 441-3598', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$Y7hMbFuHdVPKJvDtE3W.P.g8cskmw2PlooXbbxYTaxX49DaomBp0a', 'default.png', '2', 2, 'RZyZQZdtSd', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(26, 'Roslyn Borer', 'roslyn-borer', 'daniella02@example.com', '+1 (248) 796-6422', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$nx0Pkciy2BrHdoNj16AmB.wiqwxowg2g2GLXHsichqssUkwSl.Uya', 'default.png', '1', 2, 'x8hJX5fZHV', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(27, 'Clarabelle Connelly', 'clarabelle-connelly', 'bashirian.monserrat@example.com', '454-904-5979', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$UcHYbHJ.2c87WCs9DZdDKOCJ15IfCdnj57opG733i.CWW13mQoC2q', 'default.png', '1', 2, 'mThdsFAeVv', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(28, 'Alexie Hudson', 'alexie-hudson', 'grimes.lavonne@example.net', '+1.796.837.5476', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$EnjBdLRnmTHUCZ8E52nrPut0W7jIAeGMmGImaPZIIj9qrGSYvMZCC', 'default.png', '2', 2, 'QYiP3utsmB', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(29, 'Prof. Wyatt Daniel II', 'prof-wyatt-daniel-ii', 'carlee65@example.com', '950-807-7226 x4489', 'یزد', 'یزد', '2020-12-20 07:12:02', NULL, '$2y$10$XYR07tIgxJbeuUQJAw0caOXR72.XdpRgrf/kilw2.YZ5qj3tuY.u2', 'default.png', '1', 2, 'ia3wW86FIX', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(30, 'Aaron Grimes', 'aaron-grimes', 'murphy.bettye@example.net', '773.767.6108 x043', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$wgdq4n3fmxmOBMy6/ldFF.CV5xfI3l5koBYGweu2Un/G7o7OrljES', 'default.png', '1', 2, 'xfYDkzZHgr', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(31, 'Jose Moen Sr.', 'jose-moen-sr', 'rubye.funk@example.org', '+1-285-724-9994', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$06gzT58bQ9NsNhxGbwwmyOToOwOU2BlxXU/4AOWf4pbBF8aDdVKvO', 'default.png', '1', 2, 'vlvxj1lwxd', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(32, 'Annette Conn', 'annette-conn', 'dudley05@example.net', '1-869-382-2842 x721', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$StGKCMTJuJSgvOYusSXEd.SA7PVRcN/CKL05JjEmgsRbpyRdr.q4q', 'default.png', '1', 2, 'rry88P702m', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(33, 'Zack Bergnaum', 'zack-bergnaum', 'arnulfo.kub@example.net', '1-997-312-9085', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$D3Wt37oRk4.47W1M0G/h2uc7VQXgQrOBd1sDjjBHx.J1oIVNttktS', 'default.png', '2', 2, 'S8pIEgXdv1', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(34, 'Prof. Leon Reynolds V', 'prof-leon-reynolds-v', 'deon.lehner@example.com', '240-262-5846 x1625', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$zb8l9mQAoQcdfwDQlAKwfuw15OLW7ivIR70aIatXQ2GWIp4wOrj7e', 'default.png', '2', 2, 'j36nTwoM6V', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(35, 'Dean Beer', 'dean-beer', 'pkutch@example.org', '1-958-701-1312', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$S6xAlSlombmhIhCglZZIz.YwBWUnDRePwvRUUsH2Ww4ujiZy.SlnG', 'default.png', '1', 2, 'Ncn3ji5URE', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(36, 'Mazie Smitham MD', 'mazie-smitham-md', 'sim.cremin@example.com', '341.496.2723 x8083', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$jBRRHeZ98jwlYOT7hDbUc.1xxqdNsloGcIHHPwaQ463fjsQSsbapS', 'default.png', '1', 2, 'qER9ugF7Pc', '2020-12-20 07:12:10', '2020-12-28 12:02:41'),
+(37, 'Khalid Daniel', 'khalid-daniel', 'kacie.mertz@example.net', '+1-276-823-6786', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$rOGBzDLdgZdssLrZrCkmcen6Aa038VgBBuwGYCq0.AWi4/jOrVN4u', 'default.png', '1', 2, 'SbwHlsZ1hq', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(38, 'Mina Gottlieb', 'mina-gottlieb', 'ldamore@example.com', '1-579-981-6006', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$/OCkZK8401WeWedj2SCtXuddHl.lS.NsmYrcd/T9NLI1RfKbzYGv6', 'default.png', '1', 2, '2CxSyhTHf4', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(39, 'Adonis Considine', 'adonis-considine', 'brennan.connelly@example.com', '(345) 256-4674', 'یزد', 'یزد', '2020-12-20 07:12:03', NULL, '$2y$10$O8XcYZC5nCW6p77eq9DdEOjdQ4raAMY4zc73Bo5GaOoeuB.71HwpK', 'default.png', '1', 2, '63jhGoEllE', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(40, 'Mr. Jarred Haag', 'mr-jarred-haag', 'kody78@example.org', '+14174313257', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$CcS1l43nQbocY6TmJw.UZuZ.8IbxDE2hu8vDE5.f0DAh7c76v7Rx.', 'default.png', '1', 2, 'Bk9taSpzGJ', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(41, 'Dr. Cathy Predovic IV', 'dr-cathy-predovic-iv', 'aurelie76@example.org', '+1-495-285-7192', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$cx.Qcj.7K8ruZFi7z0er8.4wdPt9SrgdCiND59ivuHVGGtho3YCF6', 'default.png', '2', 2, 'SHKuyZvnMZ', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(42, 'Wallace Crooks Jr.', 'wallace-crooks-jr', 'rodrick.schaefer@example.net', '1-565-444-7169', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$BoQsXNnMBLFiD49EkVrRyu4Ih9k9UQRfW109NjmoJR0mUto/YwUIq', 'default.png', '1', 2, 'tsLWf9Ukg7', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(43, 'Fabiola Ratke', 'fabiola-ratke', 'fcrona@example.org', '1-337-350-1716 x729', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$hlJPac2xjqG1ILhMJBYneu6PgcaGiFz3B5qScgNGHPwZ6n2dvK9cG', 'default.png', '2', 2, 'Ardek9XLZ8', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(44, 'Damian Schmeler Sr.', 'damian-schmeler-sr', 'zulauf.osvaldo@example.com', '1-909-412-1302 x27389', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$YAYByPYLd.nG7A0tm53LAup60qb78/NwmIAqKyYizHPR8uAVcDs1u', 'default.png', '1', 2, 'xIshybK39g', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(45, 'Domenico Graham', 'domenico-graham', 'murray.schneider@example.net', '540-698-3972 x85658', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$7TlEuPD/hNFsmMrr566BeeFRPOgM4jlqg.nEUotDNRdk00nb4p9Sm', 'default.png', '2', 2, 'ncRs0u2K7a', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(46, 'Liza Wilkinson', 'liza-wilkinson', 'hilpert.berenice@example.net', '1-863-336-4907', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$gi5l5wb3a/A6CjcGMSn1ROJ/4Wpp76RCyEdcbObnF1p9trHcl4TrG', 'default.png', '2', 2, 'sPSTY7Ezgf', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(47, 'Willis Corkery PhD', 'willis-corkery-phd', 'wisozk.edison@example.org', '1-857-446-9757 x5470', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$.E4fjwx757cTR5d4wKrt9uA6E29lIqs4EAbSSwrDVwaGjNvR4WiJW', 'default.png', '1', 2, 'vvBqRhA3Na', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(48, 'Vena Kuhic', 'vena-kuhic', 'rutherford.keegan@example.com', '1-309-345-9778', 'یزد', 'یزد', '2020-12-20 07:12:04', NULL, '$2y$10$qAqIk70tzSk0MBGk8kYyoOlXFuINTtP93iGGoXYFdlo4KqZcBxT2y', 'default.png', '2', 2, 'NOrMMzFK4d', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(49, 'Dr. Elna Bosco', 'dr-elna-bosco', 'blair12@example.org', '314-208-9456 x6739', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$4u9ROk41QqtafzUDXdjtW.wBy0QcGOMT8czg9VfiylvTDh/9Tacam', 'default.png', '1', 2, 'bzdUo38M2B', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(50, 'Leonel Keebler', 'leonel-keebler', 'rfunk@example.com', '1-435-916-8135', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$cE7HGa90he7U9fYJc5FpjeWD./ZhoxT5JXkImtMF6GpfGVlgK38Im', 'default.png', '2', 2, 'lFGuWu4fCW', '2020-12-20 07:12:10', '2020-12-28 12:02:42'),
+(51, 'Mr. Enid Kuhic', 'mr-enid-kuhic', 'wnitzsche@example.net', '1-928-514-9716 x24376', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$AABsQ23NkRZO8WjR5cAcx.9PWNXP5NTCEdC2BrJSIfQMZevp3DO1m', 'default.png', '2', 2, 'yuCWfNrPup', '2020-12-20 07:12:10', '2020-12-28 12:02:43'),
+(52, 'Karl Wyman', 'karl-wyman', 'sigurd86@example.org', '709-442-0607', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$Uk0JvhjnJOy1UrbK44ts/.A9A6FVrQ/LX7rSeZksXhG3l6XKkfTRq', 'default.png', '1', 2, 'eRvaQ7PbAQ', '2020-12-20 07:12:10', '2020-12-28 12:02:43'),
+(53, 'Jorge Dare III', 'jorge-dare-iii', 'wolf.kali@example.org', '+1-860-475-3219', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$YgJ9pvZr78.0Jb4hWZ2b.e/vcdRUOetNbYGBaXGT8mnB3FvlxdFWK', 'default.png', '1', 2, 'VISr13qrjm', '2020-12-20 07:12:10', '2020-12-28 12:02:43'),
+(54, 'Marie Marks', 'marie-marks', 'anissa04@example.net', '1-619-249-3036', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$.DCYZgCumbl7Wa2AlarOc.BlH.prbc9PG2xAPThKe5J.za/3ZSC7C', 'default.png', '1', 2, 'E2iZvYISQZ', '2020-12-20 07:12:10', '2020-12-28 12:02:43'),
+(55, 'Floyd Schumm', 'floyd-schumm', 'xstoltenberg@example.net', '+1 (819) 381-5083', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$2H96nEplbmlcXaCKAlxec.RSg1LDRxYETSWIqyDvHPlIenu5eOBXa', 'default.png', '1', 2, 'XlcH56r2Dd', '2020-12-20 07:12:10', '2020-12-28 12:02:43'),
+(56, 'Oliver Satterfield', 'oliver-satterfield', 'reichert.donna@example.net', '247-873-8930', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$nvfYLtQb/ELfT2Legk/bY..Fu.HE0L6iXqInNTk27Aj2UWm6Jyk5y', 'default.png', '2', 2, '7Y3eIKkEiR', '2020-12-20 07:12:10', '2020-12-28 12:02:43'),
+(57, 'Prof. Santina White PhD', 'prof-santina-white-phd', 'aaliyah.wyman@example.org', '330-739-4089', 'یزد', 'یزد', '2020-12-20 07:12:05', NULL, '$2y$10$Ny.BSEZ4KCg2Q1zG0CCZ8eKalUjkwvKMHSpWWSlvnEyFIC6iqQmpm', 'default.png', '2', 2, 'ldzdQqE8fL', '2020-12-20 07:12:10', '2020-12-28 12:02:43'),
+(58, 'Mrs. Isabelle Heathcote', 'mrs-isabelle-heathcote', 'stracke.billy@example.com', '(656) 722-3608', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$97ZDkVqnp5LqcKeUlUb1IeHUGOVsmGq.mkQK2pwzI6NYcNfGnbswq', 'default.png', '1', 2, 'Du1oE1RClQ', '2020-12-20 07:12:10', '2020-12-28 12:02:43'),
+(59, 'Mr. Armando McClure MD', 'mr-armando-mcclure-md', 'jesse.cartwright@example.org', '448-368-7722', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$0PZYNGyfkP9dtOVYNquMeuToBjLpqIhQLMMKsUnZJIBIRz6DJLzE6', 'default.png', '1', 2, 'XwasJhWigD', '2020-12-20 07:12:11', '2020-12-28 12:02:43'),
+(60, 'Vinnie Von', 'vinnie-von', 'jaylin.tillman@example.org', '718.292.6198', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$AHZfbQwsGHglISjo5KmCiOHmWGR/EdLU75a4106vX/.VJaf3mknZS', 'default.png', '1', 2, 'WpiplaqD6D', '2020-12-20 07:12:11', '2020-12-28 12:02:43'),
+(61, 'Daisha Bednar', 'daisha-bednar', 'witting.elmore@example.net', '+1.714.727.8305', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$xtYLpvCruvY5QO.GQUYFneRNd6atJbC2.dV.fyT8RCMzIaQ3NCDg.', 'default.png', '2', 2, 'YYPFmmMekp', '2020-12-20 07:12:11', '2020-12-28 12:02:43'),
+(62, 'Mr. Hazel Fisher II', 'mr-hazel-fisher-ii', 'elsa.bins@example.org', '1-387-396-6962 x08560', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$4Qu32FYxS7zz5P/zlUnDfudmI3TGLMpG7nRtH/MAJ.LM3i42Yai.u', 'default.png', '2', 2, '0Sg2GilKvd', '2020-12-20 07:12:11', '2020-12-28 12:02:43'),
+(63, 'Lyda Schaden', 'lyda-schaden', 'chanel.bogisich@example.com', '1-993-810-9142 x994', 'یزد', 'یزد', '2020-12-20 07:12:06', NULL, '$2y$10$uioznY2EhDiwaHBQU6LKQO.1x8hBatZDuJ0OGrKikHavMoeFl543K', 'default.png', '1', 2, 'koXN6HomAq', '2020-12-20 07:12:11', '2020-12-28 12:02:43'),
+(64, 'Florence Jenkins', 'florence-jenkins', 'ted.emard@example.net', '958.615.1653 x6612', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$5L20PX2Q4gDPYRF39499nuvblJpie0XGn6yKVWl9gO3x3HnsqveM2', 'default.png', '1', 2, 'lb5CEjqCDj', '2020-12-20 07:12:11', '2020-12-28 12:02:43'),
+(65, 'Millie Ondricka', 'millie-ondricka', 'selmer08@example.com', '1-963-293-5853 x8242', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$UVF6AKGAIKm4mksRhEk9ReXNBUOGsV70rkP97dPE2RpJy19VZkuq6', 'default.png', '1', 2, 'rcK3sbbuZ2', '2020-12-20 07:12:11', '2020-12-28 12:02:43'),
+(66, 'Major Roob Sr.', 'major-roob-sr', 'jschimmel@example.com', '1-839-215-3269', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$1wPXO5WcmE6dUFP3R9516.1LhtlOjjS7ldWvlNK8J85WTKgiGY5sa', 'default.png', '2', 2, 'GCiExjdW17', '2020-12-20 07:12:11', '2020-12-28 12:02:43'),
+(67, 'Dr. Piper Rath DVM', 'dr-piper-rath-dvm', 'devan98@example.com', '696.774.5336', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$oHQf.eG3e9CZGUroZ9kTdOkr7iKRqjjRN3rOagc8eM2OSXWZINuda', 'default.png', '1', 2, 'iBeyfRYKSw', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(68, 'Elisa Schowalter', 'elisa-schowalter', 'marquise.hagenes@example.com', '717.225.8494 x095', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$T/wg.MWswGu8OJne8XlIde7ovTFcmbm1LiQIQPjVLOFe8Su84HRVC', 'default.png', '2', 2, 'bjh6JhqVcr', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(69, 'Prof. Keshawn Jast Sr.', 'prof-keshawn-jast-sr', 'maybell93@example.com', '+1-615-663-8928', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$QAWQbp.Mbqyuc4ApRGfgauxkX2LDLQALyEJRF2oAAFi6J6LjoXyJm', 'default.png', '1', 2, 'oFrDj4nQ75', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(70, 'Warren Kihn Jr.', 'warren-kihn-jr', 'hwunsch@example.org', '+12029829981', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$F7Y9tnQQ3H.lGYCyEjBy8u7iEO0arQRv8/Ynr67A/C6FYWU8gVZKy', 'default.png', '2', 2, 'SfWYOQoi2N', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(71, 'Oleta McCullough', 'oleta-mccullough', 'xwindler@example.com', '1-914-769-0294', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$DJtbxVXXnrSXmncaN4XYD.TenwGCcea/njethc7f7CjhDLhWb1ScC', 'default.png', '1', 2, 'PwnUWFftjf', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(72, 'Mohamed Prohaska', 'mohamed-prohaska', 'hirthe.miller@example.org', '963-256-4260 x110', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$UPx79xvn8vCQDpeOvXizROx6OSCDWbx.4xTHuCLv1qfpMn85vaCxS', 'default.png', '2', 2, 'h7iX89i6f9', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(73, 'Donato Swift', 'donato-swift', 'carroll.frank@example.net', '(505) 270-6569', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$VKVIldb//u65LJi7JSEXHeQcQ.Me6jNZYCSb25IENY6931urMi0sO', 'default.png', '1', 2, '9tMqTcTpjF', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(74, 'Prof. Emiliano Bednar', 'prof-emiliano-bednar', 'lou.langworth@example.com', '810-946-0032', 'یزد', 'یزد', '2020-12-20 07:12:07', NULL, '$2y$10$0j31nOSDS6E0LfqCEmswB.LIwfTd55z.l4MBoxoc0oQQS1iz2nkhO', 'default.png', '2', 2, 'IXdi16hBED', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(75, 'Mrs. Josephine Bartoletti MD', 'mrs-josephine-bartoletti-md', 'kutch.jalon@example.org', '(919) 675-3950', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$DGObE0RQf1iaj8n98KRPr.LIejNlKPT29xOdNu/fhxXKKia5WA4mu', 'default.png', '1', 2, 'AwTZocgDhS', '2020-12-20 07:12:11', '2020-12-28 12:02:44'),
+(76, 'Eric Tromp', 'eric-tromp', 'noemy.barrows@example.net', '274.790.6865 x293', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$tuN5VKUSyZTZ25xngGDgz.8PB7qFL2TDaJAzWT22Vl3xXklnXTHTy', 'default.png', '2', 2, 'uz2sGy0W8Q', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(77, 'Shayna Kerluke', 'shayna-kerluke', 'roxanne.jenkins@example.com', '+1-985-241-6065', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$mp6j3EP1H1XEuENI.7FubOaTMTP1uuaiKuWvHoPztPcGqva5FFDHe', 'default.png', '2', 2, 'r439ASNmWB', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(78, 'Bart Cormier', 'bart-cormier', 'marks.brooks@example.org', '464.492.6635 x0905', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$3AkMMGc50bIpSz7T5lhV0uoJUj8MIVKhP7lnAdMIr4N/vJA8Y0EL6', 'default.png', '1', 2, '58TGYLWXaS', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(79, 'Tyshawn McGlynn', 'tyshawn-mcglynn', 'kris.lloyd@example.org', '464.981.9599 x817', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$oJPmGX7ISawo3E9gywyKNOno9kbHZXOp.qALXrgbxFQ3BB6reiZwW', 'default.png', '1', 2, '6UBlyIJ0HE', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(80, 'Gladyce Kiehn', 'gladyce-kiehn', 'jared.crooks@example.org', '(373) 577-9164', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$JPQFMuM/WkHp2t/Or1U2eOTYDr0n/3bkAwxzy6Y17tnQTumSZF.3y', 'default.png', '2', 2, 'x2VPHzhCYp', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(81, 'Era Jenkins', 'era-jenkins', 'kattie89@example.com', '+1-895-269-1112', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$VqL5SCwwnowzNT.1VPHEDeBUDtNscMpMm7M3g7w0RpCiR0D72QREK', 'default.png', '1', 2, 'ZlDpoNEbRm', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(82, 'Westley Heathcote', 'westley-heathcote', 'ferry.jacquelyn@example.org', '(326) 848-6898 x07957', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$wOJIIg7MQs/SA53FwS0UOetHqpP.RAy1jP6qZ2qlyl2Q.8PSKCl0q', 'default.png', '1', 2, '9ID33FaEUN', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(83, 'Matt Huels', 'matt-huels', 'jenkins.tiffany@example.org', '+1 (952) 223-4913', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$AApugRECU9LqS7DFcfMgEOKqcQZBL63YD82cEkKe9UtAlqi47SN0i', 'default.png', '1', 2, 'Q6MsvJFNO1', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(84, 'Krystal Wolff Jr.', 'krystal-wolff-jr', 'obergstrom@example.org', '494.538.0978', 'یزد', 'یزد', '2020-12-20 07:12:08', NULL, '$2y$10$jAcICQU24VkC5jEK5Iqwn.Uzlk5hPPtwnQF/Q8VK5FIBurRs1FX5q', 'default.png', '2', 2, '8LirwySJoL', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(85, 'Alba Bode IV', 'alba-bode-iv', 'xmorar@example.com', '908-354-6699', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$McOyuxXSPp2n7VVpQsCOkeq5vadkjc1667x6wHYBhRG2Xayid9N22', 'default.png', '1', 2, 'waFoLLaAaU', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(86, 'Ayana Beahan', 'ayana-beahan', 'wweimann@example.org', '(932) 458-5127', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$SHjYNLRTLVlyIPos637beet2/xIyymXDMHCATvdIoLpmzfjRk3d9G', 'default.png', '2', 2, 'UeZE5wiOLU', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(87, 'Esta Marquardt Jr.', 'esta-marquardt-jr', 'kendrick48@example.org', '1-749-790-2571', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$xHQTCXOhFVABNTCOgcTu2u6ER7rwKN1o.IwIVpvmaVFD1SjEdf8.W', 'default.png', '2', 2, 'GBqUgHXNVt', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(88, 'Marcelino Cruickshank MD', 'marcelino-cruickshank-md', 'sauer.luna@example.com', '1-285-200-1777 x21705', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$hrpDhskbmha2Nki0CIKKgexjq7hR9TLzo0ObC9whaRwRefZxu7TJi', 'default.png', '1', 2, 'PdGk7Er4Rx', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(89, 'Maxime Langosh', 'maxime-langosh', 'rterry@example.org', '+15186408667', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$rydkJCeiX4mODwNmn453he6mMrZAi1B41blT25VnD4Bze1V8B7dly', 'default.png', '1', 2, 'oT5LlpTQ1c', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(90, 'Prof. Krystel Stokes PhD', 'prof-krystel-stokes-phd', 'ucorkery@example.com', '1-206-881-5834', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$gDltgrJOXGrietVXWzCfCe0MpdaEkyvk1N9yfef2H6eREOyp43Gl6', 'default.png', '1', 2, 'qi1zAFV4UM', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(91, 'Nicola Morar MD', 'nicola-morar-md', 'considine.quinten@example.org', '1-218-682-1187 x7390', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$nWZeIZU1Jf3PSXuEc33ttOGTxXl8dp0SYx2aZTWHCL6X0cX7PV1Ei', 'default.png', '1', 2, 'tZpNvqQfs6', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(92, 'Daphney Carroll', 'daphney-carroll', 'watsica.braden@example.org', '(670) 656-2719 x9305', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$8J9gFTQnMc8a7B1pmtlRouFQ6Yxy4wMuXkOO/G1Ww7pI.qTiG6XUm', 'default.png', '2', 2, 'KUo1ptSbUS', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(93, 'Cornelius Leannon', 'cornelius-leannon', 'gabernathy@example.com', '(693) 598-2572 x6811', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$8EHxVqNQ5ztQ9ooDBzgHfej8KP3LH2TsG9p0kvoasjyi.LFdBf9Sy', 'default.png', '2', 2, 'LSbGSva5uO', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(94, 'Dr. Virginie Armstrong', 'dr-virginie-armstrong', 'wilkinson.sabina@example.com', '961.641.2171 x784', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$TcfZrrD9yk08YwP69j1ajOCx/Z6p7U.YxJJGrYqJMxfjQqrgPTZOC', 'default.png', '2', 2, 'SgWoOuXXs0', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(95, 'Rubye Wunsch', 'rubye-wunsch', 'clakin@example.com', '312.337.8572', 'یزد', 'یزد', '2020-12-20 07:12:09', NULL, '$2y$10$0NKbxq2cBozhsME4vo/Aqu.917V78sUcwdE20AJXoLo5f0RDPFksG', 'default.png', '2', 2, 'WFnDkGvdKP', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(96, 'Forrest Conroy', 'forrest-conroy', 'maynard.ebert@example.org', '451.898.2911', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$at.M51Ri1YN7C6L2yLAeF.I9T1LCs3SlK7kQg0OxqiIHralaiP4iK', 'default.png', '2', 2, 'zdZO01o6H3', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(97, 'Edna Greenfelder', 'edna-greenfelder', 'supton@example.org', '(634) 808-9892 x46207', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$RFSFibAYDhsv3VlNHXAXhufuQNCdjvUpNJLUYkJjz.U9S2jbSjmcS', 'default.png', '1', 2, 'P0JgAUrBPi', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(98, 'Aylin Huel', 'aylin-huel', 'efahey@example.net', '843-917-2405', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$s/SlF2VqrvT2DjQ5EVEfCOJe/Rxtnn0QTfgP1QxsLhEcZDwXjRv.O', 'default.png', '2', 2, '5BgOwHdxif', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(99, 'Velma Klein', 'velma-klein', 'karley95@example.org', '816-321-9454 x498', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$.Dc6kw7W4XWf..bhFS6GT.7JzZ3G0YJnLdN5l8kQXEIuFRKI.RQQy', 'default.png', '2', 2, 'lIDlmnn7NW', '2020-12-20 07:12:11', '2020-12-28 12:02:45'),
+(100, 'Prof. Frederik Marquardt', 'prof-frederik-marquardt', 'cremin.otho@example.net', '(365) 753-0409 x1742', 'یزد', 'یزد', '2020-12-20 07:12:10', NULL, '$2y$10$VIZ5HWnQZMVcX1yw6SfQhOpu8yh7YqrhTnXD9xeM4SypQ4yJjIMAa', 'default.png', '1', 2, 'LjChAFyYBe', '2020-12-20 07:12:11', '2020-12-28 12:02:45');
 
 --
 -- Constraints for dumped tables
@@ -537,7 +561,7 @@ ALTER TABLE `confirmations`
 -- Constraints for table `lawyer_infos`
 --
 ALTER TABLE `lawyer_infos`
-  ADD CONSTRAINT `lawyer_infos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lawyer_infos_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `questions`

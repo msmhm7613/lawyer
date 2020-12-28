@@ -69,9 +69,19 @@ Route::group(['prefix' => 'lawyer'], function () {
 /* User Uri */
 // @TODO Check User Role
 Route::get('/lawyers','LawyerController@getLawyer');
+
+// Filter Lawyers (*city,*role_id)
+Route::get('/lawyers/filter/{city?}/{role_id?}','LawyerController@filterLawyers');
+
 Route::post('/question/store','QuestionController@store');
 Route::get('/question/get/{start?}','QuestionController@getQuestions');
 Route::get('/question/{id}','QuestionController@show');
+
+// get lawyer info (slug)
+Route::get('/lawyer/{slug}','LawyerController@show');
+
+// Top Lawyers
+Route::get('/top_lawyers','LawyerController@topLawyers');
 
 // service_price info (role_id,type)type = 1 online 2 phone
 Route::get('/service_price/show/{role_id}/{type}','ServicePriceController@show');
@@ -81,3 +91,7 @@ Route::get('/topic/all','TopicController@topics');
 
 // Tags Uri
 Route::get('/tags/all','TagController@tags');
+
+// Kiri Route
+Route::get('/update_slug_lawyers','TestController@updateSlug');
+Route::get('/set_speciality','TestController@setSpeciality');
