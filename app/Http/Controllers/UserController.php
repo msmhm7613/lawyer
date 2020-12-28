@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -41,6 +42,7 @@ class UserController extends Controller
             $user->role = $req->role;
             $user->status = 1;
             $user->profile = 'default.png';
+            $user->slug = Str::random(15);
             $user->save();
 
 

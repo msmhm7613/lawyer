@@ -43,4 +43,55 @@ class LawyerController extends Controller
             return response()->json(['status' => 0,'msg' => $this->empty_result]);
 
     }
+
+    public function show($slug){
+
+        $user = User::where('slug',$slug)->where('status',2)->select('id','name','email','city','slug','region','profile')->first();
+
+        if(is_null($user))
+            return response()->json(['status' => 0,'msg' => $this->empty_result]);
+
+        $user_info = LawyerInfo::where('user_id',$user->id)->first();
+
+        $result['lawyer'] = $user;
+        $result['lawyer_info'] = $user_info;
+
+        return response()->json(['status' => 1,'result' => $result]);
+
+    }
+
+    public function topLawyers(){
+
+        $top_rates = LawyerInfo::orderBy('rate','DESC')->select('id','name','city','region','profile')->take(10)->get();
+
+        if(count($top_rates) == 0)
+            return response()->json(['status' => 0,'msg' => $this->empty_result]);
+
+        foreach ($top_rates as $top){
+            $top->lawyer_info = LawyerInfo::find($top->user_id);
+        }
+         return response()->json(['status' => 1,'result' => $top_rates]);
+
+    }
+
+    public function filterLawyers($city = null,$role_id = null){
+
+        if(is_null($city) && is_null($role_id))
+            return response()->json(['status' => 0,'msg' => $this->fails_msg]);
+
+        if($city && $role_id)
+            $lawyers = User::where('status',2)->where('city',$city)->where('role',$role_id)->get();
+        else
+            $lawyers = User::where('status',2)->where('city',$city)->get();
+
+        foreach ($lawyers as $item)
+            $item->lawyer_info = LawyerInfo::where('user_id',$item->id)->first();
+
+        // orderBy lawyer rate
+        $lawyers = $lawyers->SortByDesc('lawyer_info.rate');
+
+        return response()->json(['status' => 1,'result' => $lawyers]);
+
+    }
+
 }
